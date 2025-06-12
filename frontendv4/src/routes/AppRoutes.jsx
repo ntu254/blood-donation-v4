@@ -25,6 +25,7 @@ import AdminBloodInventoryPage from "../pages/admin/AdminBloodInventoryPage";
 import BloodCompatibilityCheckerPage from "../pages/BloodCompatibilityCheckerPage";
 import RequestDonationPage from '../pages/RequestDonationPage';
 import BloodRequestsPage from '../pages/BloodRequestsPage';
+import FindDonorPage from '../pages/FindDonorPage';
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../components/layout/MainLayout.jsx";
 
@@ -45,6 +46,7 @@ const AppRoutes = () => (
             <Route element={<ProtectedRoute />}>
                 <Route path="/profile" element={<UserProfilePage />} />
                 <Route path="/request-donation" element={<RequestDonationPage />} />
+                <Route path="/find-donor" element={<FindDonorPage />} />
             </Route>
         </Route>
 
