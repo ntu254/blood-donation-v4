@@ -25,7 +25,7 @@ class UserService {
 
     async createUserByAdmin(userData) {
         try {
-            const response = await apiClient.post('/admin/users', userData); //
+            const response = await apiClient.post('/admin/users', userData);
             return response.data;
         } catch (error) {
             console.error("Error creating user:", error.response?.data || error.message);
@@ -35,7 +35,7 @@ class UserService {
 
     async getUserByIdForAdmin(userId) {
         try {
-            const response = await apiClient.get(`/admin/users/${userId}`); //
+            const response = await apiClient.get(`/admin/users/${userId}`);
             return response.data;
         } catch (error) {
             console.error(`Error fetching user by ID ${userId}:`, error.response?.data || error.message);
@@ -45,7 +45,7 @@ class UserService {
 
     async updateUserByAdmin(userId, userData) {
         try {
-            const response = await apiClient.put(`/admin/users/${userId}`, userData); //
+            const response = await apiClient.put(`/admin/users/${userId}`, userData);
             return response.data;
         } catch (error) {
             console.error(`Error updating user ${userId}:`, error.response?.data || error.message);
@@ -55,7 +55,7 @@ class UserService {
 
     async softDeleteUserByAdmin(userId) {
         try {
-            const response = await apiClient.delete(`/admin/users/${userId}`); //
+            const response = await apiClient.delete(`/admin/users/${userId}`);
             return response.data;
         } catch (error) {
             console.error(`Error soft deleting user ${userId}:`, error.response?.data || error.message);
@@ -68,7 +68,7 @@ class UserService {
         try {
             const response = await apiClient.get('/roles'); // Giả định endpoint là /api/roles
             return response.data;
-        } catch (error) { //
+        } catch (error) {
             console.error("Error fetching roles:", error.response?.data || error.message);
             // Fallback data as in original AdminUserService.jsx
             return [
@@ -82,9 +82,9 @@ class UserService {
 
     async getBloodTypes() {
         try {
-            const response = await apiClient.get('/blood-types'); //
+            const response = await apiClient.get('/blood-types');
             return response.data;
-        } catch (error) { //
+        } catch (error) {
             console.error("Error fetching blood types:", error.response?.data || error.message);
             return []; // Fallback from original
         }
@@ -93,7 +93,7 @@ class UserService {
     // General User Profile Methods
     async getCurrentUserProfile() {
         try {
-            const response = await apiClient.get('/users/me/profile'); //
+            const response = await apiClient.get('/users/me/profile');
             return response.data;
         } catch (error) {
             console.error("Error fetching current user profile:", error.response?.data || error.message);
@@ -103,7 +103,7 @@ class UserService {
 
     async updateUserProfile(updateData) {
         try {
-            const response = await apiClient.put('/users/me/profile', updateData); //
+            const response = await apiClient.put('/users/me/profile', updateData);
             return response.data;
         } catch (error) {
             console.error("Error updating user profile:", error.response?.data || error.message);

@@ -1,7 +1,7 @@
 package com.hicode.backend.config;
 
-import com.hicode.backend.security.JwtAuthenticationEntryPoint; // cite: 57
-import com.hicode.backend.security.JwtAuthenticationFilter; // cite: 58
+import com.hicode.backend.security.JwtAuthenticationEntryPoint;
+import com.hicode.backend.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

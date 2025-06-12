@@ -6,9 +6,11 @@ import InputField from '../components/common/InputField';
 import Button from '../components/common/Button';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import userService from '../services/userService';
+import mapsService from '../services/mapsService';
 
 const FindDonorPage = () => {
     const [formData, setFormData] = useState({
+        address: '',
         latitude: '',
         longitude: '',
         radius: 5,
@@ -27,6 +29,23 @@ const FindDonorPage = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleGeocodeAddress = async () => {
+        if (!formData.address) {
+            toast.error('Vui lòng nhập địa chỉ');
+            return;
+        }
+        try {
+            const coords = await mapsService.geocodeAddress(formData.address);
+            setFormData(prev => ({
+                ...prev,
+                latitude: coords.latitude.toFixed(6),
+                longitude: coords.longitude.toFixed(6)
+            }));
+        } catch (error) {
+            toast.error(error.message || 'Không tìm thấy vị trí');
+        }
     };
 
     const handleUseCurrentLocation = () => {
@@ -73,6 +92,17 @@ const FindDonorPage = () => {
                     <div className="flex justify-end">
                         <Button type="button" onClick={handleUseCurrentLocation} variant="secondary" size="sm">
                             Sử dụng vị trí hiện tại
+                        </Button>
+                    </div>
+                    <InputField
+                        label="Địa chỉ"
+                        name="address"
+                        value={formData.address}
+                        onChange={handleChange}
+                    />
+                    <div className="flex justify-end">
+                        <Button type="button" onClick={handleGeocodeAddress} variant="secondary" size="sm">
+                            Lấy tọa độ từ địa chỉ
                         </Button>
                     </div>
                     <InputField
