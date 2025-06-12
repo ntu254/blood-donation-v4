@@ -1,8 +1,8 @@
 package com.hicode.backend.controller;
 
-import com.hicode.backend.dto.BloodCompatibilityDetailResponse; // cite: 80
-import com.hicode.backend.dto.admin.CreateBloodCompatibilityRequest; // cite: 83
-import com.hicode.backend.dto.admin.UpdateBloodCompatibilityRequest; // cite: 85
+import com.hicode.backend.dto.BloodCompatibilityDetailResponse;
+import com.hicode.backend.dto.admin.CreateBloodCompatibilityRequest;
+import com.hicode.backend.dto.admin.UpdateBloodCompatibilityRequest;
 import com.hicode.backend.service.BloodManagementService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,6 @@ public class BloodCompatibilityController {
     private BloodManagementService bloodManagementService;
 
     @GetMapping
-    // SỬA ĐỔI DÒNG NÀY
     @PreAuthorize("permitAll()")
     public ResponseEntity<Page<BloodCompatibilityDetailResponse>> getAllCompatibilityRules(
             @RequestParam(defaultValue = "0") int page,
