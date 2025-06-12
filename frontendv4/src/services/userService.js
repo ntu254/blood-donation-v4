@@ -110,6 +110,16 @@ class UserService {
             throw new Error(error.response?.data?.message || "Failed to update profile");
         }
     }
+
+    async searchDonorsByLocation(searchData) {
+        try {
+            const response = await apiClient.post('/users/search/donors-by-location', searchData);
+            return response.data;
+        } catch (error) {
+            console.error('Error searching donors:', error.response?.data || error.message);
+            throw new Error(error.response?.data?.message || 'Failed to search donors');
+        }
+    }
 }
 
 export default new UserService();
