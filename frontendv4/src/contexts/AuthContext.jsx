@@ -7,7 +7,6 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // ... useEffect để kiểm tra người dùng đã đăng nhập chưa ...
     useEffect(() => {
         setLoading(true);
         try {
@@ -26,17 +25,14 @@ export const AuthProvider = ({ children }) => {
     const login = async (credentials) => {
         setLoading(true);
         try {
-            // FIX: `authData` đã là dữ liệu người dùng, không phải response đầy đủ
             const authData = await authService.login(credentials);
-
-            // Lấy `accessToken` trực tiếp từ `authData`
             const { accessToken } = authData;
             if (accessToken) {
-                setUser(authData); // Cập nhật state của context với toàn bộ thông tin người dùng
+                setUser(authData);
             }
-            return authData; // Trả về dữ liệu để component có thể dùng nếu cần
+            return authData;
         } catch (error) {
-            throw error; // Ném lỗi đã được xử lý ở service ra cho component
+            throw error;
         } finally {
             setLoading(false);
         }
@@ -48,13 +44,36 @@ export const AuthProvider = ({ children }) => {
     };
 
     const register = async (userData) => {
-        // Tương tự, hàm register trong service cũng có thể đã trả về data
-        // Bạn chỉ cần gọi nó, không cần xử lý kết quả ở đây nếu không cần thiết
         await authService.register(userData);
     };
 
+    const updateUser = (updatedUserData) => {
+        setUser(prevUser => ({
+            ...prevUser,
+            ...updatedUserData
+        }));
+        
+        // Update localStorage
+        const currentStoredUser = authService.getCurrentUser();
+        if (currentStoredUser) {
+            const updatedStoredUser = {
+                ...currentStoredUser,
+                ...updatedUserData
+            };
+            localStorage.setItem('user', JSON.stringify(updatedStoredUser));
+        }
+    };
+
     return (
-        <AuthContext.Provider value={{ user, loading, isAuthenticated: !!user, login, logout, register }}>
+        <AuthContext.Provider value={{ 
+            user, 
+            loading, 
+            isAuthenticated: !!user, 
+            login, 
+            logout, 
+            register,
+            updateUser 
+        }}>
             {children}
         </AuthContext.Provider>
     );

@@ -18,6 +18,10 @@ import AdminUserEditPage from "../pages/admin/AdminUserEditPage";
 import AdminUserDetailPage from "../pages/admin/AdminUserDetailPage";
 import AdminBloodTypePage from "../pages/admin/AdminBloodTypePage";
 import AdminBloodCompatibilityPage from "../pages/admin/AdminBloodCompatibilityPage";
+import AdminDonationHistoryPage from "../pages/admin/AdminDonationHistoryPage";
+import AdminEmergencyRequestsPage from "../pages/admin/AdminEmergencyRequestsPage";
+import AdminBloodInventoryPage from "../pages/admin/AdminBloodInventoryPage";
+
 import BloodCompatibilityCheckerPage from "../pages/BloodCompatibilityCheckerPage";
 import RequestDonationPage from '../pages/RequestDonationPage';
 import BloodRequestsPage from '../pages/BloodRequestsPage';
@@ -28,21 +32,20 @@ const AppRoutes = () => (
     <Routes>
         {/* Public Routes */}
         <Route element={<MainLayout />}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/forbidden" element={<ForbiddenPage />} />
-        <Route path="/blood-compatibility" element={<BloodCompatibilityCheckerPage />} />
-        <Route path="/blood-requests" element={<BloodRequestsPage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/forbidden" element={<ForbiddenPage />} />
+            <Route path="/blood-compatibility" element={<BloodCompatibilityCheckerPage />} />
+            <Route path="/blood-requests" element={<BloodRequestsPage />} />
         </Route>
 
-
-        {/* Authenticated User Routes (bất kỳ ai đã đăng nhập) */}
+        {/* Authenticated User Routes */}
         <Route element={<MainLayout />}>
-        <Route element={<ProtectedRoute />}>
-            <Route path="/profile" element={<UserProfilePage />} />
-            <Route path="/request-donation" element={<RequestDonationPage />} />
-        </Route>
+            <Route element={<ProtectedRoute />}>
+                <Route path="/profile" element={<UserProfilePage />} />
+                <Route path="/request-donation" element={<RequestDonationPage />} />
+            </Route>
         </Route>
 
         {/* Admin Routes */}
@@ -55,6 +58,18 @@ const AppRoutes = () => (
                 <Route path="users/view/:userId" element={<AdminUserDetailPage />} />
                 <Route path="blood-types" element={<AdminBloodTypePage />} />
                 <Route path="blood-compatibility" element={<AdminBloodCompatibilityPage />} />
+                <Route path="donation-history" element={<AdminDonationHistoryPage />} />
+                <Route path="emergency-requests" element={<AdminEmergencyRequestsPage />} />
+                <Route path="blood-inventory" element={<AdminBloodInventoryPage />} />
+            </Route>
+        </Route>
+
+        {/* Staff Routes */}
+        <Route element={<ProtectedRoute requiredRoles={['Staff', 'Admin']} />}>
+            <Route path="/staff" element={<AdminLayout />}>
+                <Route path="donation-history" element={<AdminDonationHistoryPage />} />
+                <Route path="emergency-requests" element={<AdminEmergencyRequestsPage />} />
+                <Route path="blood-inventory" element={<AdminBloodInventoryPage />} />
             </Route>
         </Route>
 

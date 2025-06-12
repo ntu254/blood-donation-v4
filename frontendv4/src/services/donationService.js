@@ -2,32 +2,35 @@
 import apiClient from './apiClient';
 
 const donationService = {
-    /**
-     * Lấy lịch sử hiến máu của người dùng hiện tại.
-     */
-    getUserDonationHistory: () => {
-        return apiClient.get('/donations/history');
+    // User donation requests
+    createDonationRequest: () => {
+        return apiClient.post('/donations/request');
     },
 
-    /**
-     * Gửi yêu cầu đăng ký hiến máu.
-     */
-    requestToDonate: (donationData) => {
-        return apiClient.post('/donations/request', donationData);
+    getMyDonationHistory: () => {
+        return apiClient.get('/donations/my-history');
     },
 
-    /**
-     * [Admin] Lấy tất cả các yêu cầu hiến máu từ người dùng.
-     */
+    // Admin/Staff donation management
     getAllDonationRequests: () => {
         return apiClient.get('/donations/requests');
     },
 
-    /**
-     * [Admin] Cập nhật trạng thái của một yêu cầu hiến máu.
-     */
-    updateDonationRequestStatus: (requestId, status) => {
-        return apiClient.put(`/donations/requests/${requestId}/status`, { status });
+    updateDonationStatus: (processId, statusData) => {
+        return apiClient.put(`/donations/requests/${processId}/status`, statusData);
+    },
+
+    // Health check operations
+    recordHealthCheck: (processId, healthData) => {
+        return apiClient.post(`/donations/${processId}/health-check`, healthData);
+    },
+
+    markBloodAsCollected: (processId) => {
+        return apiClient.put(`/donations/${processId}/collect`);
+    },
+
+    recordBloodTestResult: (processId, testData) => {
+        return apiClient.post(`/donations/${processId}/test-result`, testData);
     },
 };
 
