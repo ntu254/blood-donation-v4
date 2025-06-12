@@ -121,7 +121,6 @@ const UserProfilePage = () => {
 
             setProfileData(updatedUserData);
 
-            // SỬA LẠI: Gọi đúng hàm updateUser từ context
             updateUser(updatedUserData);
 
             toast.success("Cập nhật thông tin thành công!", { id: toastId });

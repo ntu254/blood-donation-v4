@@ -118,7 +118,7 @@ const AdminUserEditPage = () => {
 
 
         try {
-            await userService.updateUserByAdmin(userId, requestData); //
+            await userService.updateUserByAdmin(userId, requestData);
             toast.success("Cập nhật người dùng thành công!", { id: toastId });
             navigate('/admin/users');
         } catch (error) {

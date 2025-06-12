@@ -1,7 +1,7 @@
 package com.hicode.backend.config;
 
-import com.hicode.backend.security.JwtAuthenticationEntryPoint; // cite: 57
-import com.hicode.backend.security.JwtAuthenticationFilter; // cite: 58
+import com.hicode.backend.security.JwtAuthenticationEntryPoint;
+import com.hicode.backend.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -51,8 +51,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/blood-types", "/api/blood-types/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/blood-compatibility").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/blood-compatibility/{id}").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/blood-types/{id}/users").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/blood-compatibility/*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/blood-types/*/users").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/blood-requests", "/api/blood-requests/search").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/admin/users/roles").hasRole("ADMIN")
                         .requestMatchers("/error").permitAll()
