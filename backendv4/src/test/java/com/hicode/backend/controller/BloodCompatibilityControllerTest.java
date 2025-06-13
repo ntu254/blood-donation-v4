@@ -1,6 +1,6 @@
 package com.hicode.backend.controller;
 
-import com.hicode.backend.dto.BloodCompatibilityDetailResponse;
+import com.hicode.backend.dto.admin.BloodCompatibilityDetailResponse;
 import com.hicode.backend.service.BloodManagementService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
