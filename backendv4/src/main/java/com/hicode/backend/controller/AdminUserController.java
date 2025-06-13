@@ -4,6 +4,8 @@ import com.hicode.backend.dto.admin.AdminCreateUserRequest;
 import com.hicode.backend.dto.admin.AdminUpdateUserRequest;
 import com.hicode.backend.dto.UserResponse;
 import com.hicode.backend.service.UserService;
+import com.hicode.backend.model.entity.Role;
+import java.util.List;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -54,5 +56,11 @@ public class AdminUserController {
     @DeleteMapping("/{id}")
     public ResponseEntity<UserResponse> softDeleteUserByAdmin(@PathVariable Long id) {
         return ResponseEntity.ok(userService.softDeleteUserByAdmin(id));
+    }
+
+    // Endpoint to fetch all available roles for user management
+    @GetMapping("/roles")
+    public ResponseEntity<List<Role>> getAllRoles() {
+        return ResponseEntity.ok(userService.getAllRoles());
     }
 }
