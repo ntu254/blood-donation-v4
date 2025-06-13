@@ -29,7 +29,7 @@ const Navbar = () => {
             </Link>
 
 
-            {isAuthenticated && (
+            {isAuthenticated && !isAdmin && (
                 <Link to="/request-donation" className="flex items-center text-gray-600 hover:text-red-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">
                     <CalendarPlus className="w-4 h-4 mr-1.5" />Đặt lịch hiến máu
                 </Link>
@@ -61,10 +61,12 @@ const Navbar = () => {
                     <div className="hidden md:block">
                         {isAuthenticated ? (
                             <div className="flex items-center space-x-4">
-                                <Link to="/profile" className="flex items-center text-gray-600 hover:text-red-500 transition-colors">
-                                    <User className="w-5 h-5 mr-1" />
-                                    <span>{user.fullName || 'Hồ sơ'}</span>
-                                </Link>
+                                {!isAdmin && (
+                                    <Link to="/profile" className="flex items-center text-gray-600 hover:text-red-500 transition-colors">
+                                        <User className="w-5 h-5 mr-1" />
+                                        <span>{user.fullName || 'Hồ sơ'}</span>
+                                    </Link>
+                                )}
                                 <button onClick={handleLogout} className="flex items-center bg-red-500 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-red-600 transition-colors">
                                     <LogOut className="w-4 h-4 mr-1" />
                                     <span>Đăng xuất</span>
@@ -95,7 +97,9 @@ const Navbar = () => {
                                     <User className="w-5 h-5 mr-2 text-gray-500" />
                                     <div className="text-base font-medium text-gray-800">{user.fullName}</div>
                                 </div>
-                                <Link to="/profile" className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-red-600">Hồ sơ</Link>
+                                {!isAdmin && (
+                                    <Link to="/profile" className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-red-600">Hồ sơ</Link>
+                                )}
                                 <button onClick={handleLogout} className="block w-full text-left mt-1 px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-red-600">Đăng xuất</button>
                             </div>
                         ) : (

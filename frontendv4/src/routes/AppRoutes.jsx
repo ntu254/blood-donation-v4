@@ -42,9 +42,9 @@ const AppRoutes = () => (
             <Route path="/blood-requests" element={<BloodRequestsPage />} />
         </Route>
 
-        {/* Authenticated User Routes */}
+        {/* Member Routes */}
         <Route element={<MainLayout />}>
-            <Route element={<ProtectedRoute />}>
+            <Route element={<ProtectedRoute requiredRoles={['Member']} />}>
                 <Route path="/profile" element={<UserProfilePage />} />
                 <Route path="/request-donation" element={<RequestDonationPage />} />
                 <Route path="/find-donor" element={<FindDonorPage />} />
