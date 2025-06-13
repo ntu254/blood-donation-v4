@@ -38,7 +38,7 @@ const AdminBloodInventoryPage = () => {
             ]);
             setInventory(inventoryResponse.data);
             setBloodTypes(bloodTypesResponse.data);
-        } catch (error) {
+        } catch {
             toast.error('Lỗi khi tải dữ liệu kho máu');
         } finally {
             setLoading(false);
@@ -59,7 +59,7 @@ const AdminBloodInventoryPage = () => {
             setEditingItem(null);
             fetchData();
             resetForm();
-        } catch (error) {
+        } catch {
             toast.error('Lỗi khi lưu dữ liệu kho máu');
         }
     };
@@ -81,7 +81,7 @@ const AdminBloodInventoryPage = () => {
                 await apiClient.delete(`/blood-inventory/${id}`);
                 toast.success('Xóa thành công');
                 fetchData();
-            } catch (error) {
+            } catch {
                 toast.error('Lỗi khi xóa');
             }
         }

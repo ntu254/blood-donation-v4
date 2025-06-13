@@ -553,7 +553,7 @@ export const adminHandlers = [
     }),
 
     // == BLOOD INVENTORY (NEW) ==
-    http.get(`${API_URL}/blood-inventory`, ({request}) => {
+    http.get(`${API_URL}/blood-inventory`, () => {
         // Có thể thêm filter, pagination sau này
         const inventoryWithDetails = mockBloodInventory.map(item => {
             const bloodType = mockBloodTypes.find(bt => bt.id === item.bloodTypeId);

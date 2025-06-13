@@ -24,7 +24,7 @@ const AdminDonationHistoryPage = () => {
             setLoading(true);
             const response = await donationService.getAllDonationRequests();
             setDonations(response.data);
-        } catch (error) {
+        } catch {
             toast.error('Lỗi khi tải lịch sử hiến máu');
         } finally {
             setLoading(false);
@@ -55,7 +55,7 @@ const AdminDonationHistoryPage = () => {
             await donationService.updateDonationStatus(donationId, { newStatus });
             toast.success('Cập nhật trạng thái thành công');
             fetchDonations();
-        } catch (error) {
+        } catch {
             toast.error('Lỗi khi cập nhật trạng thái');
         }
     };

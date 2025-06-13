@@ -40,7 +40,7 @@ const AdminEmergencyRequestsPage = () => {
                 radius: 50
             });
             setRequests(response.data);
-        } catch (error) {
+        } catch {
             toast.error('Lỗi khi tải danh sách yêu cầu khẩn cấp');
         } finally {
             setLoading(false);
@@ -64,7 +64,7 @@ const AdminEmergencyRequestsPage = () => {
                 latitude: '',
                 longitude: ''
             });
-        } catch (error) {
+        } catch {
             toast.error('Lỗi khi tạo yêu cầu khẩn cấp');
         }
     };
@@ -74,7 +74,7 @@ const AdminEmergencyRequestsPage = () => {
             await bloodRequestService.updateRequestStatus(requestId, status);
             toast.success('Cập nhật trạng thái thành công');
             fetchRequests();
-        } catch (error) {
+        } catch {
             toast.error('Lỗi khi cập nhật trạng thái');
         }
     };

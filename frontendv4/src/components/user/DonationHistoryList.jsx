@@ -13,7 +13,7 @@ const DonationHistoryList = () => {
             try {
                 const response = await donationService.getUserDonationHistory();
                 setDonations(response.data);
-            } catch (error) {
+            } catch {
                 toast.error('Lỗi khi tải lịch sử hiến máu.');
             } finally {
                 setIsLoading(false);

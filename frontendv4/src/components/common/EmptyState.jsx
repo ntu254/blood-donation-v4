@@ -3,7 +3,7 @@ import { FileX, Plus } from 'lucide-react';
 import Button from './Button';
 
 const EmptyState = ({
-  icon: Icon = FileX,
+  icon,
   title = "Không có dữ liệu",
   description = "Chưa có dữ liệu để hiển thị.",
   action,
@@ -11,6 +11,7 @@ const EmptyState = ({
   onAction,
   className = ""
 }) => {
+  const Icon = icon || FileX;
   return (
     <div className={`text-center py-12 ${className}`}>
       <div className="mx-auto h-24 w-24 text-gray-400 mb-4">
