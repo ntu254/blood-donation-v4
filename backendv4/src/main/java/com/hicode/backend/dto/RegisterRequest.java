@@ -19,7 +19,7 @@ public class RegisterRequest {
     private String email;
 
     @NotBlank(message = "Password is required")
-    @Size(min = 6, max = 100, message = "Password need to longer than 6")
+    @Size(min = 6, max = 100, message = "Password needs to be longer than 6 characters")
     private String password;
 
     @NotBlank(message = "Phone number is required")
