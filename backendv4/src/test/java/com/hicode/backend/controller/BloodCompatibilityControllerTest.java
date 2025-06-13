@@ -13,10 +13,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Collections;
+import java.util.Arrays;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @WebMvcTest(BloodCompatibilityController.class)
 class BloodCompatibilityControllerTest {
@@ -29,12 +30,21 @@ class BloodCompatibilityControllerTest {
 
     @Test
     void getAllCompatibilityRulesReturnsOk() throws Exception {
-        Page<BloodCompatibilityDetailResponse> page = new PageImpl<>(Collections.emptyList());
+        BloodCompatibilityDetailResponse r1 = new BloodCompatibilityDetailResponse();
+        r1.setId(1);
+        BloodCompatibilityDetailResponse r2 = new BloodCompatibilityDetailResponse();
+        r2.setId(2);
+        Page<BloodCompatibilityDetailResponse> page = new PageImpl<>(Arrays.asList(r1, r2));
+
         Mockito.when(bloodManagementService.getAllCompatibilityRules(Mockito.any(Pageable.class)))
                 .thenReturn(page);
 
         mockMvc.perform(get("/api/blood-compatibility")
                         .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content.length()").value(page.getContent().size()))
+                .andExpect(jsonPath("$.content[0].id").value(1));
+
+        Mockito.verify(bloodManagementService).getAllCompatibilityRules(Mockito.any(Pageable.class));
     }
 }
