@@ -1,7 +1,7 @@
 // frontendv2/src/components/layout/AdminLayout.jsx
 import React from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Users, Droplets, GitCompareArrows, Home, LogOut, MessageSquareWarning, History, Warehouse } from 'lucide-react';
+import { LayoutDashboard, Users, Droplets, GitCompareArrows, Home, LogOut, MessageSquareWarning, History, Warehouse, AlertTriangle } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth'; 
 
 const AdminLayout = () => {
@@ -12,8 +12,9 @@ const AdminLayout = () => {
         { path: "/admin", icon: LayoutDashboard, label: "Dashboard", roles: ['Admin'] }, 
         { path: "/admin/users", icon: Users, label: "Quản lý người dùng", roles: ['Admin'] }, 
         { path: "/admin/blood-types", icon: Droplets, label: "Quản lý loại máu", roles: ['Admin'] }, 
-        { path: "/admin/blood-compatibility", icon: GitCompareArrows, label: "Quản lý tương thích", roles: ['Admin'] }, 
-        { path: "/admin/emergency-requests", icon: MessageSquareWarning, label: "Yêu cầu khẩn cấp", roles: ['Admin', 'Staff'] }, 
+        { path: "/admin/blood-compatibility", icon: GitCompareArrows, label: "Quản lý tương thích", roles: ['Admin'] },
+        { path: "/admin/blood-requests", icon: AlertTriangle, label: "Yêu cầu cần máu", roles: ['Admin', 'Staff'] },
+        { path: "/admin/emergency-requests", icon: MessageSquareWarning, label: "Yêu cầu khẩn cấp", roles: ['Admin', 'Staff'] },
         { path: "/admin/donation-history", icon: History, label: "Lịch sử hiến máu", roles: ['Admin', 'Staff'] }, 
         { path: "/admin/blood-inventory", icon: Warehouse, label: "Quản lý kho máu", roles: ['Admin', 'Staff'] }, 
     ];

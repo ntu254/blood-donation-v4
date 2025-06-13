@@ -30,6 +30,11 @@ const bloodRequestService = {
     // Get all public blood requests
     getAllPublicBloodRequests: () => {
         return apiClient.get('/blood-requests/public');
+    },
+
+    // Get all requests (Admin/Staff)
+    getAllRequests: (query = {}) => {
+        return apiClient.get('/blood-requests', { params: query });
     }
 };
 

@@ -3,7 +3,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import userService from '../services/userService';
 import toast from 'react-hot-toast';
-// THÊM MỚI: Import thêm icon History và User cho tab
 import { UserCircle, Edit3, Save, CalendarDays, Droplet, Mail, Phone, MapPin, ShieldCheck, AlertTriangle, History, User, CheckCircle, X } from 'lucide-react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
@@ -35,12 +34,10 @@ const UserProfilePage = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
 
-    // THÊM MỚI: State để quản lý tab đang hoạt động
-    const [activeTab, setActiveTab] = useState('profile'); // 'profile' hoặc 'history'
+    const [activeTab, setActiveTab] = useState('profile');
 
     const fetchProfile = useCallback(async () => {
         if (!authUser) return;
-        // Chỉ set loading cho tab profile
         if (activeTab === 'profile') setIsLoading(true);
         try {
             const data = await userService.getCurrentUserProfile();
@@ -77,10 +74,9 @@ const UserProfilePage = () => {
         } finally {
             if (activeTab === 'profile') setIsLoading(false);
         }
-    }, [authUser, activeTab]); // Thêm activeTab vào dependency
+    }, [authUser, activeTab]);
 
     useEffect(() => {
-        // Chỉ fetch profile khi người dùng ở tab 'profile'
         if (activeTab === 'profile') {
             fetchProfile();
         }
@@ -99,7 +95,6 @@ const UserProfilePage = () => {
         const toastId = toast.loading("Đang cập nhật thông tin...");
 
         const updateData = {
-            // ... giữ nguyên logic tạo updateData của bạn
             fullName: formData.fullName,
             phone: formData.phone || null,
             dateOfBirth: formData.dateOfBirth || null,
@@ -113,10 +108,7 @@ const UserProfilePage = () => {
         };
 
         try {
-            // API trả về response của Axios
             const response = await userService.updateUserProfile(updateData);
-
-            // Dữ liệu người dùng nằm trong response.data
             const updatedUserData = response.data;
 
             setProfileData(updatedUserData);
@@ -136,7 +128,6 @@ const UserProfilePage = () => {
         }
     };
 
-    // THAY ĐỔI: Chỉ loading khi đang ở tab profile
     if ((isLoading && activeTab === 'profile') || authLoading) {
         return (
             <>
@@ -147,7 +138,6 @@ const UserProfilePage = () => {
         );
     }
 
-    // Giữ nguyên logic kiểm tra authUser
     if (!authUser) {
         return (
             <>
@@ -177,7 +167,6 @@ const UserProfilePage = () => {
                                     <p className="text-gray-600">{authUser.email}</p>
                                 </div>
                             </div>
-                            {/* Chỉ hiển thị nút Chỉnh sửa ở tab profile */}
                             {activeTab === 'profile' && !isEditing && (
                                 <Button onClick={() => setIsEditing(true)} variant="outline">
                                     <Edit3 size={16} className="mr-2" /> Chỉnh sửa hồ sơ
@@ -220,7 +209,6 @@ const UserProfilePage = () => {
                             <>
                                 {isEditing ? (
                                     <form onSubmit={handleSubmit} className="space-y-6">
-                                        {/* Toàn bộ code form của bạn giữ nguyên ở đây */}
                                         <InputField label="Họ và tên đầy đủ" name="fullName" value={formData.fullName} onChange={handleInputChange} required disabled={isSubmitting} error={errors.fullName} />
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <InputField label="Số điện thoại" name="phone" type="tel" value={formData.phone} onChange={handleInputChange} disabled={isSubmitting} error={errors.phone} />
@@ -279,7 +267,6 @@ const UserProfilePage = () => {
                                     </form>
                                 ) : (
                                     <dl className="divide-y divide-gray-200">
-                                        {/* Toàn bộ code hiển thị thông tin của bạn giữ nguyên ở đây */}
                                         <ProfileDetailItem icon={Mail} label="Email" value={profileData.email} />
                                         <ProfileDetailItem icon={Phone} label="Điện thoại" value={profileData.phone} />
                                         <ProfileDetailItem icon={CalendarDays} label="Ngày sinh" value={profileData.dateOfBirth ? new Date(profileData.dateOfBirth).toLocaleDateString('vi-VN') : null} />
@@ -305,7 +292,6 @@ const UserProfilePage = () => {
     );
 };
 
-// Component ProfileDetailItem giữ nguyên
 const ProfileDetailItem = ({ icon: IconComponent, label, value, highlight }) => {
     const Icon = IconComponent;
     return (

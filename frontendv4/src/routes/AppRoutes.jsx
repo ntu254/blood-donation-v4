@@ -20,6 +20,7 @@ import AdminBloodTypePage from "../pages/admin/AdminBloodTypePage";
 import AdminBloodCompatibilityPage from "../pages/admin/AdminBloodCompatibilityPage";
 import AdminDonationHistoryPage from "../pages/admin/AdminDonationHistoryPage";
 import AdminEmergencyRequestsPage from "../pages/admin/AdminEmergencyRequestsPage";
+import AdminBloodRequestsPage from "../pages/admin/AdminBloodRequestsPage";
 import AdminBloodInventoryPage from "../pages/admin/AdminBloodInventoryPage";
 
 import BloodCompatibilityCheckerPage from "../pages/BloodCompatibilityCheckerPage";
@@ -60,6 +61,7 @@ const AppRoutes = () => (
                 <Route path="users/view/:userId" element={<AdminUserDetailPage />} />
                 <Route path="blood-types" element={<AdminBloodTypePage />} />
                 <Route path="blood-compatibility" element={<AdminBloodCompatibilityPage />} />
+                <Route path="blood-requests" element={<AdminBloodRequestsPage />} />
                 <Route path="donation-history" element={<AdminDonationHistoryPage />} />
                 <Route path="emergency-requests" element={<AdminEmergencyRequestsPage />} />
                 <Route path="blood-inventory" element={<AdminBloodInventoryPage />} />
@@ -69,6 +71,7 @@ const AppRoutes = () => (
         {/* Staff Routes */}
         <Route element={<ProtectedRoute requiredRoles={['Staff', 'Admin']} />}>
             <Route path="/staff" element={<AdminLayout />}>
+                <Route path="blood-requests" element={<AdminBloodRequestsPage />} />
                 <Route path="donation-history" element={<AdminDonationHistoryPage />} />
                 <Route path="emergency-requests" element={<AdminEmergencyRequestsPage />} />
                 <Route path="blood-inventory" element={<AdminBloodInventoryPage />} />
