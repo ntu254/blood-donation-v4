@@ -46,7 +46,7 @@ const BloodRequestsPage = () => {
             try {
                 const response = await bloodRequestService.getAllPublicBloodRequests();
                 setRequests(response.data);
-            } catch (error) {
+            } catch {
                 toast.error("Không thể tải danh sách yêu cầu máu.");
             } finally {
                 setLoading(false);

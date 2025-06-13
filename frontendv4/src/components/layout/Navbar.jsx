@@ -30,12 +30,14 @@ const Navbar = () => {
 
 
             {isAuthenticated && (
-                <Link to="/request-donation" className="flex items-center text-gray-600 hover:text-red-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">
-                    <CalendarPlus className="w-4 h-4 mr-1.5" />Đặt lịch hiến máu
-                </Link>
-                <Link to="/find-donor" className="flex items-center text-gray-600 hover:text-red-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">
-                    <Stethoscope className="w-4 h-4 mr-1.5" />Tìm người hiến
-                </Link>
+                <>
+                    <Link to="/request-donation" className="flex items-center text-gray-600 hover:text-red-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">
+                        <CalendarPlus className="w-4 h-4 mr-1.5" />Đặt lịch hiến máu
+                    </Link>
+                    <Link to="/find-donor" className="flex items-center text-gray-600 hover:text-red-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">
+                        <Stethoscope className="w-4 h-4 mr-1.5" />Tìm người hiến
+                    </Link>
+                </>
             )}
             {isAdmin && (
                 <Link to="/admin" className="flex items-center text-red-600 hover:text-red-700 transition-colors px-3 py-2 rounded-md text-sm font-bold">

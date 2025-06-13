@@ -21,7 +21,7 @@ const AdminBloodRequestsPage = () => {
             setLoading(true);
             const res = await bloodRequestService.getAllRequests();
             setRequests(res.data || []);
-        } catch (error) {
+        } catch {
             toast.error('Lỗi khi tải danh sách yêu cầu');
         } finally {
             setLoading(false);
