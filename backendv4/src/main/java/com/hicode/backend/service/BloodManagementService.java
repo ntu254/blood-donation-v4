@@ -1,7 +1,7 @@
 package com.hicode.backend.service;
 
 import com.hicode.backend.dto.*;
-import com.hicode.backend.dto.BloodCompatibilityDetailResponse;
+import com.hicode.backend.dto.admin.BloodCompatibilityDetailResponse;
 import com.hicode.backend.dto.admin.CreateBloodCompatibilityRequest;
 import com.hicode.backend.dto.admin.CreateBloodTypeRequest;
 import com.hicode.backend.dto.admin.UpdateBloodCompatibilityRequest;
