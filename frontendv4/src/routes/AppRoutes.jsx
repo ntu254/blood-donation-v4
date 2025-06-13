@@ -27,6 +27,8 @@ import BloodCompatibilityCheckerPage from "../pages/BloodCompatibilityCheckerPag
 import RequestDonationPage from '../pages/RequestDonationPage';
 import BloodRequestsPage from '../pages/BloodRequestsPage';
 import FindDonorPage from '../pages/FindDonorPage';
+import TermsPage from '../pages/TermsPage';
+import PrivacyPolicyPage from '../pages/PrivacyPolicyPage';
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../components/layout/MainLayout.jsx";
 
@@ -37,6 +39,8 @@ const AppRoutes = () => (
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
             <Route path="/forbidden" element={<ForbiddenPage />} />
             <Route path="/blood-compatibility" element={<BloodCompatibilityCheckerPage />} />
             <Route path="/blood-requests" element={<BloodRequestsPage />} />
