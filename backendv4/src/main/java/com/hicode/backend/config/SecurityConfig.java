@@ -53,6 +53,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/blood-compatibility").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/blood-compatibility/*").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/blood-types/*/users").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/blood-requests/public").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/blood-requests", "/api/blood-requests/search").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/admin/users/roles").hasRole("ADMIN")
                         .requestMatchers("/error").permitAll()

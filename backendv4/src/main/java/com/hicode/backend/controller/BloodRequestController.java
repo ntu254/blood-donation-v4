@@ -34,6 +34,12 @@ public class BloodRequestController {
         return ResponseEntity.ok(requests);
     }
 
+    @GetMapping("/public")
+    public ResponseEntity<List<BloodRequestResponse>> getPublicRequests() {
+        List<BloodRequestResponse> requests = bloodRequestService.getPublicRequests();
+        return ResponseEntity.ok(requests);
+    }
+
     @GetMapping("/{id}")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<BloodRequestResponse> getRequestById(@PathVariable Long id) {
