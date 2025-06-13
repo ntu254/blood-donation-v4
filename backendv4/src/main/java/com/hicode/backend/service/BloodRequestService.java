@@ -53,6 +53,12 @@ public class BloodRequestService {
     }
 
     @Transactional(readOnly = true)
+    public List<BloodRequestResponse> getPublicRequests() {
+        List<BloodRequest> requests = bloodRequestRepository.findByStatus(RequestStatus.PENDING);
+        return requests.stream().map(this::mapToResponse).collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
     public BloodRequestResponse getRequestById(Long id) {
         BloodRequest request = bloodRequestRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Blood Request not found with id: " + id));

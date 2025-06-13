@@ -1,6 +1,7 @@
 package com.hicode.backend.repository;
 
 import com.hicode.backend.model.entity.BloodRequest;
+import com.hicode.backend.model.enums.RequestStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -22,4 +23,6 @@ public interface BloodRequestRepository extends JpaRepository<BloodRequest, Long
             @Param("bloodTypeId") Integer bloodTypeId,
             @Param("status") String status
     );
+
+    List<BloodRequest> findByStatus(RequestStatus status);
 }
